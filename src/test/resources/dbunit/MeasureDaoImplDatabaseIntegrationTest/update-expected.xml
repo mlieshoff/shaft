@@ -1,0 +1,30 @@
+<dataset>
+    <measure_string
+            database_hash="-7201775940730624163"
+            bucket_hash="7781363064255353970"
+            hash="-7201775940730624163"
+            value="database1"
+            type="-1"
+    />
+    <measure_string
+            database_hash="-7201775940730624163"
+            bucket_hash="7781363064255353970"
+            hash="-2603712948209208771"
+            value="Company1"
+            type="-1"
+    />
+    <measure_string
+            database_hash="-7201775940730624163"
+            bucket_hash="7781363064255353970"
+            hash="7781363064255353970"
+            value="bucket1"
+            type="-1"
+    />
+    <measure_decimal
+            database_hash="-7201775940730624163"
+            bucket_hash="7781363064255353970"
+            hash="-2603712948209208771"
+            value="42.0"
+            type="2"
+    />
+</dataset>

@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db-mariadb:
+    image: mariadb:latest
+    container_name: shaft-maria-db
+    restart: unless-stopped
+    command: [ 'mysqld', '--default-authentication-plugin=mysql_native_password', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--port=${MARIADB_PORT}' ]
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_PASSWORD}
+      MYSQL_DATABASE: ${MARIADB_DB_NAME}
+    healthcheck:
+      test: [ "CMD-SHELL", "exit | mysql -h localhost -P ${MARIADB_PORT} -u root -p${MARIADB_PASSWORD}" ]
+      interval: 5s
+      timeout: 20s
+      retries: 30
+    ports:
+      - "${MARIADB_PORT_EXPOSE}:${MARIADB_PORT}"
+    volumes:
+      - ${DATA_DIR}:/var/lib/mysql
+    networks:
+      - db-net
+
+  shaft:
+    container_name: shaft-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      db-mariadb:
+        condition: service_healthy
+    ports:
+      - "${SERVICE_PORT_EXPOSE}:${SERVICE_PORT}"
+    networks:
+      - db-net
+
+networks:
+  db-net:
+    driver: bridge

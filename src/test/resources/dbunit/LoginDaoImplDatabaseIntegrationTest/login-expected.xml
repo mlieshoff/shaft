@@ -1,0 +1,7 @@
+<dataset>
+    <login
+            id="4711"
+            token="token1"
+            json_settings='{"allowedDatabasesAndBuckets":{"database1":["bucket1","bucket2"]}}'
+    />
+</dataset>
