@@ -41,7 +41,7 @@ create table if not exists `measure_integer` (
 create table if not exists `login` (
     `id` bigint not null auto_increment,
     `token` varchar(255),
-    `json_setting` varchar(4000),
+    `json_settings` varchar(4000),
     `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     primary KEY (`id`, `token`)
 ) DEFAULT CHARSET=utf8;
