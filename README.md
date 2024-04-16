@@ -37,6 +37,15 @@ Open a console and go to the project dir. Then execute following command to stop
 
 ``docker-compose down``
 
+## Configuration
+
+``insert into `login` (`token`, `json_settings`) values ('testtoken', '{"allowedDatabasesAndBuckets":{"database1":["bucket1","bucket2"]}}');``
+
+## Access
+
+``curl -X POST http://localhost:8088/api/locations/create/database1/bucket1 -H "x-auth-secret-key:moinsen"``
+
+
 ## Open API docs
 
 The rest API of the application is documented on the following link which can be opened in a browser:

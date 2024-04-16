@@ -18,7 +18,6 @@ class LoginDaoImpl implements LoginDao {
   public Optional<LoginResultDaoDto> login(LoginRequestDaoDto loginRequestDaoDto) {
     String token = loginRequestDaoDto.token();
     Optional<LoginEntity> optionalLoginEntity = loginRepository.findByToken(token);
-    System.out.println("-- " + GSON.toJson(optionalLoginEntity.get().getJsonSettings()));
     return optionalLoginEntity.map(
         loginEntity ->
             new LoginResultDaoDto(GSON.fromJson(loginEntity.getJsonSettings(), SettingsDaoDto.class)));

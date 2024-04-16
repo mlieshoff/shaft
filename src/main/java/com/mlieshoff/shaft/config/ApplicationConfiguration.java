@@ -1,5 +1,6 @@
 package com.mlieshoff.shaft.config;
 
+import com.mlieshoff.shaft.service.auth.AuthService;
 import com.mlieshoff.shaft.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,10 +21,12 @@ public class ApplicationConfiguration {
 
   private final LoginService loginService;
 
+  private final AuthService authService;
+
   @Bean
   public FilterRegistrationBean<AuthFilter> authFilter() {
     FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
-    registrationBean.setFilter(new AuthFilter(loginService));
+    registrationBean.setFilter(new AuthFilter(loginService, authService));
     registrationBean.addUrlPatterns("/api/*");
     registrationBean.setOrder(1);
     return registrationBean;
